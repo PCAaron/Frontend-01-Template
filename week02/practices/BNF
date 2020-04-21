@@ -1,0 +1,33 @@
+十进制加法运算
+
+<Number> ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+<DecimalNumber> ::= "0" | (("1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9") <Number>*)
+<AdditiveExpression> ::=  <DecimalNumber> | <AdditiveExpression> "+" <DecimalNumber>
+
+乘法
+<MultiplicativeExpression> ::= <DecimalNumber> | <MultiplicativeExpression> "*" <DecimalNumber>
+
+扩展乘除
+<MultiplicativeExpression> ::= <DecimalNumber> |
+                            <MultiplicativeExpression> "*" <DecimalNumber> |
+                            <MultiplicativeExpression> "/" <DecimalNumber>
+
+扩展加减法
+<AdditiveExpression> ::=  <MultiplicativeExpress> |
+                        <AdditiveExpression> "+" <MultiplicativeExpression> |
+                        <AdditiveExpression> "-" <MultiplicativeExpression>
+
+四则运算产生式
+<LogicalExpression> ::= <AdditiveExpression> | <LogicalExpression> "||"
+                      <AdditiveExpression> | <LogicalExpression> "&&"
+                      <AdditiveExpression>
+
+扩展括号运算
+<PrimaryExpression> ::= <DecimalNumber> | "(" <LogicalExpression> ")"
+<MultiplicativeExpression> = <PrimaryExpression> |
+                            <MultiplicativeExpression> "*" <PrimaryExpression> |
+                            <MultiplicativeExpression> "/" <PrimaryExpression>
+
+
+
+
