@@ -89,3 +89,109 @@ EBNF，ABNF Customized
 
 * [静态和动态语言](https://github.com/PCAaron/Frontend-01-Template/issues/3)
 
+
+# JavaScript | 词法      
+时间：2020.4.18
+
+## 空格
+![](./images/whitespace.jpg)     
+```javascript
+// TAB，对应unicode的字符集位置是9
+"\u0009"
+"	"
+"	".codePointAt/charCodeAt(0) .toString(16)
+"9"
+// SPACE，对应unicode的字符集位置是20
+"\u0020"
+" "
+" ".codePointAt(0)/charCodeAt .toString(16)
+"20"
+```   
+* NBSP:不换行空格（英语：no-break space，NBSP）是空格字符，用途是禁止自动换行。
+HTML 页面显示时会自动合并多个连续的空白字符（whitespace character），但该字符是禁止合并的，
+因此该字符也称作“硬空格”（hard space、fixed space）。      
+* ZWSP:零宽空格，（zero-width space, ZWSP）是一种不可打印的 Unicode 字符，用于可能需要换行处。
+在 HTML 页面中，零宽空格可以替代。但是在一些网页浏览器（例如 Internet Explorer 的版本 6 或以下）不支持零宽空格的功能。      
+
+## 换行
+![](./images/lineTerminator.png)    
+* LF: 换行，'\n'           
+* CR: 回车，'\r'       
+
+## 注释       
+* SingleLineCommet（单行注释//）      
+* MultiLineCommet（多行注释/**/）     
+
+## Token
+* Identifier(变量)    
+    变量名     
+    属性名(属性名可以跟关键字重合)   
+* Literal(直接量)      
+    NumberLiteral(数字直接量)        
+    StringLiteral(字符直接量)        
+* Punctuator(运算符)       
+* Keywords      
+
+### Literal
+#### NumberLiteral
+数字由IEEE 754 Double Float表示，其中组成部分：     
+* 符号位Sign(1)        
+* 指数Exponent(11)        
+* 精度Fraction(52)        
+
+数字可分成十进制DecimalLiteral（说明，其中1e3/1E3，为1000）、八进制OctallIntegerLiteral(0o开头)、
+二进制BinaryIntegerLiteral(0b开头)、十六进制HexIntegerLiteral(0x开头)
+```javascript
+0b10 // 等价parseInt('10',2)/10 .toString(2)
+2 //二进制输出
+
+0x11// 等价parseInt('17',16)
+17 //十六进制输出
+
+0o10// 等价parseInt('10',8)
+8 //八进制输出
+
+10// 等价parseInt('10')
+10
+```
+
+#### StringLiteral
+* Character(字符)     
+* Code Point(码点)      
+* Encoding      
+    UTF
+    
+字符集包含的集合有：      
+* ASCII     
+* Unicode       
+* UCS（U+0000 - U+FFFF）      
+* GB（国标）        
+    GB2312      
+    GBK     
+    GB18030     
+* ISO-8859(欧洲)      
+* BIG5(繁体)      
+
+## 补充
+
+* 字符集：字符编码（英语：Character encoding）、字集码是把字符集中的字符编码为指定集合中某一对象
+（例如：比特模式、自然数序列、8 位组或者电脉冲），以便文本在计算机中存储和通过通信网络的传递。
+常见的例子包括将拉丁字母表编码成摩斯电码和 ASCII。其中，ASCII 将字母、数字和其它符号编号，
+并用 7 比特的二进制来表示这个整数。通常会额外使用一个扩充的比特，以便于以 1 个字节的方式存储。
+在计算机技术发展的早期，如 ASCII（1963 年）和 EBCDIC（1964 年）这样的字符集逐渐成为标准。
+但这些字符集的局限很快就变得明显，于是人们开发了许多方法来扩展它们。
+对于支持包括东亚 CJK 字符家族在内的写作系统的要求能支持更大量的字符，并且需要一种系统而不是临时的方法实现这些字符的编码。   
+
+* ASCII ：（American Standard Code for Information Interchange，美国信息交换标准代码）
+是基于拉丁字母的一套电脑编码系统。它主要用于显示现代英语，而其扩展版本延伸美国标准信息交换码则可以部分支持其他西欧语言，
+并等同于国际标准 ISO/IEC 646。美国信息交换标准代码是这套编码系统的传统命名，互联网号码分配局现在更倾向于使用它的新名字 
+US-ASCII[2]。美国信息交换标准代码是美国电气和电子工程师协会里程碑之一。       
+
+* [Unicode](https://www.fileformat.info/info/unicode/) ：中文：万国码、国际码、统一码、单一码。是计算机科学领域里的一项业界标准。它对世界上大部分的文字系统进行了整理、
+编码，使得电脑可以用更为简单的方式来呈现和处理文字。      
+
+* Math.abs(0.1+0.2-0.3) <= Number.EPSILON:当判断小于精度即可认为相等/转换为整数进行比较
+
+
+
+
