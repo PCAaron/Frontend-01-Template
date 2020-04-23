@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    /**
+     * description:写一个正则表达式匹配所有Number直接量
+     * params：number/string
+     * required：所有Number直接量
+     *          二进制(0b开头，0-1)、八进制(0o开头，0-7)、十六进制(0x开头，0-f)、十进制(小数点，0-9,e/E)
+     * */
+    const regNumberLiteral = (param) => {
+        if(!param) return false;
+        const regNumberRule = /^0(b|B)[0-1]+$|^0(o|O)[0-7]+$|^0(x|X)[0-9a-fA-f]+$|^(\.\d+|(0|[1-9]\d*)\.?\d*?)((e|E)[-\+]?\d+)?$/
+        return regNumberRule.test(param)
+    }
+
+
+    /**
+     * description:写一个正则表达式，匹配所有的字符串直接量，单引号和双引号
+     * params: string
+     * required: 字符串直接量，单引号 && 双引号
+     * */
+    const regStringLiteral = (param) => {
+        if(!param) return false
+        const regStringRule = /^'\*'$|^"\*"$/
+        return regStringRule.test(param)
+    }
+
+    /**
+     * description:写一个UTF-8 Encoding的函数
+     * params: string
+     * */
+    const utf8Encoding = (params) =>{
+        return params.split('').map( i => `${i}`.codePointAt(0).toString(2))
+    }
+</script>
+</body>
+</html>
